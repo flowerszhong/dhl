@@ -19,7 +19,7 @@ if ( is_page()  ) {
 	if($post->post_parent){
 		echo get_the_title( $post->post_parent );
 	}else{
-    	echo 'self' . get_the_title();
+    	echo get_the_title();
 	}
 } else {
 	if (is_category( ) || is_single( )) {

@@ -15,7 +15,7 @@
 </div><!--main-end-->
 <div id="footer">
 	<div class="container footer-container">
-	    footer
+	    <img src="<?php echo THEME_DIR . '/images/footer.gif'; ?>" alt="">
 	</div>
 </div>
 

@@ -32,9 +32,9 @@
 <div id="header">
    <div class="container header-container">
        <div id="logo">
-           <?php bloginfo('name'); ?>
-           -
-           <?php bloginfo('description'); ?>
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php bloginfo( 'name' ) ?>">
+            <img src="<?php echo THEME_DIR . '/images/logo.gif'; ?>" alt="" height="80">
+            </a>
        </div>
    </div>
 </div>
@@ -56,7 +56,7 @@ if (is_front_page()) {?>
     
 <div id="banner">
     <div class="container banner-container">
-        banner
+        <img src="<?php echo THEME_DIR . '/images/home-banner-1.PNG'; ?>" alt="" width="1000" />
     </div>
 </div>
 

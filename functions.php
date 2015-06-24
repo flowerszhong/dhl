@@ -26,7 +26,7 @@
  */
 
 
-define('THEME_DIR', get_template_directory());
+define('THEME_DIR', get_template_directory_uri());
 
 if ( version_compare( $GLOBALS['wp_version'], '4.1-alpha', '<' ) ) {
 	require THEME_DIR . '/inc/back-compat.php';
@@ -42,7 +42,7 @@ function dhl_setup() {
 	 * If you're building a theme based on twentyfifteen, use a find and replace
 	 * to change 'twentyfifteen' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'dhl', theme_dir. '/languages' );
+	load_theme_textdomain( 'dhl', THEME_DIR. '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -65,8 +65,8 @@ function dhl_setup() {
 
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu',      'twentyfifteen' ),
-		'social'  => __( 'Social Links Menu', 'twentyfifteen' ),
+		'primary' => __( 'Primary Menu',      'dhl' ),
+		'social'  => __( 'Social Links Menu', 'dhl' ),
 	) );
 
 	/*
@@ -102,7 +102,7 @@ function dhl_setup() {
 	        'name' => __( 'Home Sidebar', 'home-sidebar' ),
 	        'id' => 'sidebar-home',
 	        'description' => __( 'Widgets in this area will be shown on front-page.', 'theme-dhl' ),
-	        'before_widget' => '<divi id="%1$s" class="widget %2$s">',
+	        'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widgettitle">',
 			'after_title'   => '</h2>',
@@ -112,7 +112,7 @@ function dhl_setup() {
             'name' => __( 'Service Sidebar', 'service-sidebar' ),
             'id' => 'sidebar-service',
             'description' => __( 'Widgets in this area will be shown on front-page.', 'theme-dhl' ),
-            'before_widget' => '<divi id="%1$s" class="widget %2$s">',
+            'before_widget' => '<div id="%1$s" class="widget %2$s">',
     		'after_widget'  => '</div>',
     		'before_title'  => '<h2 class="widgettitle">',
     		'after_title'   => '</h2>',
@@ -127,9 +127,13 @@ function dhl_scripts() {
 
 	// Load our main stylesheet.
 	wp_enqueue_style( 'dhl-style', get_stylesheet_uri() );
+
+	wp_deregister_script('jquery');
+	wp_register_script('jquery', "http://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.7.2.min.js", false, null);
+	wp_enqueue_script('jquery');
+	wp_enqueue_script( 'main', THEME_DIR. '/js/main.js','jquery' );
 }
 add_action( 'wp_enqueue_scripts', 'dhl_scripts' );
-
 
 
 
