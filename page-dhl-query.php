@@ -106,12 +106,7 @@ if (have_posts()) {
 				};
 
 				return strs;
-				
-
 			}
-
-			
-			
 
 		});
 	</script>

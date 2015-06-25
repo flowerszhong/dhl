@@ -33,7 +33,6 @@
    <div class="container header-container">
        <div id="logo">
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php bloginfo( 'name' ) ?>">
-            <img src="<?php echo THEME_DIR . '/images/logo.gif'; ?>" alt="" height="80">
             </a>
        </div>
    </div>
@@ -42,7 +41,7 @@
 <div id="nav">
     <div class="container nav-container">
          <?php wp_nav_menu( array(
-             'theme_location'  =>   'primary',
+             'theme_location'  =>  'primary',
              'menu_class' => 'dhl-main-nav',
               'menu_id' => 'nav',
              ));

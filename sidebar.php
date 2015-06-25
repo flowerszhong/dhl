@@ -23,7 +23,11 @@ if ( is_page()  ) {
 	}
 } else {
 	if (is_category( ) || is_single( )) {
-		echo single_cat_title(  );
+		if(in_category( array('news'), $post )){
+			echo "新闻管理";
+		}else{
+			echo single_cat_title();
+		}
 	}
 }
 

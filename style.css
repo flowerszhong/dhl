@@ -24,16 +24,16 @@ body {
 	margin: 0px;
 	padding: 0px;
 	font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; color: #555; position: relative;
-	background: #ebebeb;
+	/*background: #ebebeb;
 	background: -moz-linear-gradient(top, #ebebeb, #d5d4d4);
 	background: -webkit-gradient(linear, 0 0, 0 100%, from(#ebebeb), to(d5d4d4));
 	background: -webkit-linear-gradient(top, #ebebeb, #d5d4d4);
 	background: -o-linear-gradient(top, #ebebeb, #d5d4d4);
 	background: linear-gradient(to bottom, #ebebeb, #d5d4d4);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebebeb', endColorstr='#d5d4d4', GradientType=0);
-	height: auto;
+	height: auto;*/
 	min-height: 100%;
-	padding-bottom: 100px;
+	padding-bottom: 10px;
 }
 .container{
 	width:1000px;
@@ -46,9 +46,19 @@ body {
 	background: url(images/header_bg.gif) 0 0 repeat-x;
 }
 
+#logo a{
+	outline: none;
+	display: block;
+	height: 84px;
+	background: url(images/logo.gif) 0 0 no-repeat;
+}
+
+
 #nav{
 	height:42px;
 	background: url(images/menu_bg.gif) 0 0 repeat-x;
+	position: relative;
+	z-index: 3;
 }
 
 .nav-container{
@@ -63,7 +73,7 @@ body {
 	border-right: 1px dotted #ccc;
 	text-align: center;
 	line-height: 40px;
-	padding: 0 10px;
+	padding: 0 16px;
 	position: relative;
 }
 
@@ -110,6 +120,12 @@ body {
 
 .sub-menu li{
 	list-style:none;
+}
+
+
+#main{
+	position: relative;
+	z-index: 1;
 }
 
 .main-container{
@@ -392,7 +408,6 @@ body {
 
 #query-result-box{
 	margin-top: 10px;
-	margin-bottom: 30px;
 	padding-bottom: 40px;
 }
 
