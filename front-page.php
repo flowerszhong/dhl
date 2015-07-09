@@ -4,6 +4,7 @@ get_header();
 
 
 <div id="home-content" class="home-content">
+
 	<div id="boxWrap">
 	        <ul>
 	          <li class="box1"><a href=""></a></li>          
@@ -13,7 +14,8 @@ get_header();
 	          <li class="box5"><a href=""></a></li>
 	          <li class="box6"><a href=""></a></li>
 	        </ul>
-	      </div>
+	 </div>
+	      
 </div>
 
 <div id="home-sidebar" class="home-sidebar">

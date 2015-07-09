@@ -36,6 +36,9 @@
             </a>
        </div>
    </div>
+   <div>
+       <?php echo get_custom_header()->url; ?>
+   </div>
 </div>
 
 <div id="nav">
@@ -53,11 +56,31 @@
 <?php 
 if (is_front_page()) {?>
     
-<div id="banner">
-    <div class="container banner-container">
-        <img src="<?php echo THEME_DIR . '/images/home-banner-1.PNG'; ?>" alt="" width="1000" />
-    </div>
-</div>
+  <div id="banner">
+      <div class="container banner-container">
+          <ul class="home-slider">
+            <?php 
+                $titan = TitanFramework::getInstance( 'mytheme' );
+                for ($i=0; $i < 7; $i++) { 
+                  echo "<li>";
+                  $imageID = $titan->getOption( 'home_slider_' . $i );
+                    if ( is_numeric( $imageID ) ) {
+
+                        $imageAttachment = wp_get_attachment_image_src( $imageID ,array(1000,300));
+
+                        $imageSrc = $imageAttachment[0];
+                        echo "<img src='" . esc_url( $imageSrc ) . "'/>";
+                    } 
+                  $home_slider_url = $titan->getOption('slider_url_' . $i);
+                  echo $home_slider_url;
+                  echo "xxxx";
+                  var_dump($pic);
+                }
+             ?>
+          </ul>
+           
+      </div>
+  </div>
 
 <?php }?>
 

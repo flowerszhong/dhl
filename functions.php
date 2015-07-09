@@ -25,6 +25,9 @@
  * @since DHL 1.0
  */
 
+require_once( 'inc/titan-framework/titan-framework.php' );
+
+
 
 define('THEME_DIR', get_template_directory_uri());
 
@@ -96,12 +99,15 @@ function dhl_setup() {
 	) ) );
 
 
+	add_theme_support( "custom-header" );
+
+
 	add_action( 'widgets_init', 'theme_widgets_init' );
 	function theme_widgets_init() {
 	    register_sidebar( array(
 	        'name' => __( 'Home Sidebar', 'home-sidebar' ),
 	        'id' => 'sidebar-home',
-	        'description' => __( 'Widgets in this area will be shown on front-page.', 'theme-dhl' ),
+	        'description' => __( ' Widgets in this area will be shown on front-page.', 'theme-dhl' ),
 	        'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widgettitle">',
@@ -123,6 +129,57 @@ function dhl_setup() {
 endif; // dhl_setup
 add_action( 'after_setup_theme', 'dhl_setup' );
 
+
+add_action( 'tf_create_options', 'mytheme_create_options' );
+function mytheme_create_options() {
+    $titan = TitanFramework::getInstance( 'mytheme' );
+
+	$adminPanel = $titan->createAdminPanel( array(
+	    'name' => 'Theme Options',
+	) );
+
+	for ($i=0; $i < 5; $i++) { 
+		$adminPanel->createOption( array(
+		    'name' => 'Slider '. $i ,
+		    'id' => 'home_slider_' . $i,
+		    'type' => 'upload',
+		    'desc' => 'Upload your image '. $i,
+		    'size'=> array(100,100)
+		));
+		$adminPanel->createOption( array(
+			'name' => 'slider url',
+			'id' => 'slider_url_'. $i,
+			'type' => 'text',
+			'desc' => 'slider url'
+		) );
+
+		$adminPanel->createOption( array(
+			'name' => 'slider_title',
+			'id' => 'slider_title_'. $i,
+			'type' => 'text',
+			'desc' => 'slider title',
+
+		) );
+
+		$adminPanel->createOption( array(
+			'name' => 'slider desc',
+			'id' => 'slider_description_'. $i,
+			'type' => 'textarea',
+			'desc' => 'slider desc',
+		) );
+	}
+
+	$adminPanel->createOption( array(
+	    'type' => 'save',
+	) );
+
+	
+
+
+
+
+}
+
 function dhl_scripts() {
 
 	// Load our main stylesheet.
@@ -132,6 +189,12 @@ function dhl_scripts() {
 	wp_register_script('jquery', "http://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.7.2.min.js", false, null);
 	wp_enqueue_script('jquery');
 	wp_enqueue_script( 'main', THEME_DIR. '/js/main.js','jquery' );
+
+	wp_register_script( 'unslider', THEME_DIR. '/js/unslider.js', 'jquery', $ver = false, $in_footer = false );
+
+	if(is_front_page()){
+		wp_enqueue_script( 'unslider');
+	}
 }
 add_action( 'wp_enqueue_scripts', 'dhl_scripts' );
 
